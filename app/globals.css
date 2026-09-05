@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -12,15 +12,272 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: #000;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  margin: 0;
+  background: #000;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(0, 255, 255, 0.055),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(103, 232, 249, 0.025),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(255, 255, 255, 0.018),
+      transparent 25%
+    );
+  filter: blur(35px);
+  animation: nexus-atmosphere 18s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.45'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+@keyframes nexus-atmosphere {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(1%, 2%, 0) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(2%, -2%, 0) scale(1.08);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE POLISH
+───────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Prevent oversized 3D canvas from creating horizontal overflow */
+  canvas {
+    max-width: 100%;
+  }
+
+  /* Hero */
+  #hero {
+    min-height: 620px;
+    height: 100svh;
+  }
+
+  .hero-title {
+    max-width: 100%;
+    font-size: clamp(4rem, 19vw, 7rem) !important;
+    line-height: 0.82 !important;
+  }
+
+  .hero-description {
+    max-width: 330px;
+    font-size: 0.8rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-actions a {
+    width: auto;
+  }
+
+  /* Philosophy */
+  #philosophy {
+    min-height: auto;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  #philosophy h2 {
+    font-size: clamp(3rem, 14vw, 5rem);
+    line-height: 0.92;
+  }
+
+  /* General section protection */
+  section {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Showcase / Technology */
+  #capabilities,
+  #technology {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  /* Large headings */
+  #capabilities h2,
+  #technology h2 {
+    font-size: clamp(3rem, 14vw, 5rem);
+    line-height: 0.92;
+  }
+
+  /* Manifesto */
+  #manifesto {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  /* Process */
+  #process {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  /* Contact */
+  #next {
+    min-height: auto;
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+  }
+
+  #next h2 {
+    font-size: clamp(3.4rem, 15vw, 6rem);
+    line-height: 0.88;
+  }
+
+  /* Better touch targets */
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Disable custom cursor on touch devices */
+  [data-cursor] {
+    cursor: pointer;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SMALL PHONES
+───────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  #hero {
+    min-height: 600px;
+  }
+
+  .hero-label {
+    font-size: 8px !important;
+    letter-spacing: 0.3em !important;
+  }
+
+  .hero-title {
+    font-size: 18vw !important;
+  }
+
+  .hero-description {
+    max-width: 300px;
+  }
+
+  .hero-actions a {
+    font-size: 9px;
+  }
+
+  #philosophy h2,
+  #capabilities h2,
+  #technology h2 {
+    font-size: 13vw;
+  }
+
+  #next h2 {
+    font-size: 14vw;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   ACCESSIBILITY
+───────────────────────────────────────────── */
+
+::selection {
+  background: rgba(103, 232, 249, 0.2);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(103, 232, 249, 0.7);
+  outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(103, 232, 249, 0.45);
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
