@@ -1,7 +1,22 @@
 {
-  "name": "3d-template-1",
-  "version": "0.1.0",
+  "name": "nexus-3d-digital-template",
+  "version": "1.0.0",
   "private": true,
+  "description": "A premium 3D digital experience template built with Next.js, React Three Fiber, Three.js, GSAP and Tailwind CSS.",
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript",
+    "threejs",
+    "react-three-fiber",
+    "webgl",
+    "3d-website",
+    "gsap",
+    "tailwindcss",
+    "creative-agency",
+    "digital-agency",
+    "website-template"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
