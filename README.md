@@ -4,7 +4,6 @@
 
 NEXUS is designed to feel like an interactive digital experience rather than a conventional website. It combines real-time 3D, motion, typography, responsive layouts, and performance-minded rendering into a polished starter for high-end web projects.
 
-![Uploading Screenshot 2026-09-05 163441.png…]()
 
 
 ## ✦ Highlights
